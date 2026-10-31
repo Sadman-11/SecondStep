@@ -1,0 +1,16 @@
+{
+  "name": "functions",
+  "description": "Express API backend for Gemini, served by Vercel",
+  "version": "1.0.0",
+  "engines": {
+    "node": "24"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  },
+  "private": true
+}
+

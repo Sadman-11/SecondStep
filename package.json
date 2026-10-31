@@ -1,0 +1,35 @@
+{
+  "name": "secondstep",
+  "version": "1.0.0",
+  "description": "SecondStep — a friendly algebra helper built with React, Vite, Vercel and Gemini (Hacktoberfest project)",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22.12.0" },
+  "scripts": {
+    "start": "node functions/index.js",
+    "dev": "node scripts/dev.mjs",
+    "dev:frontend": "vite",
+    "dev:api": "node functions/index.js",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node --test tests/review.test.mjs tests/session.test.mjs tests/transcription.test.mjs",
+    "test:browser": "npm run build && node tests/browser.mjs",
+    "test:browser:dev": "node tests/browser.mjs --dev",
+    "test:integration": "npm run build && node --test tests/integration.test.mjs",
+    "check": "node --check src/lib/review.mjs && node --check src/lib/session.mjs && node --check src/lib/image.mjs && node --check src/lib/transcription.mjs && node --check src/hooks/useLearningSession.js && node --check scripts/dev.mjs && node --check vite.config.mjs && node --check functions/index.js && npm run build",
+    "install:all": "npm install && npm --prefix functions install",
+    "deploy": "vercel deploy --prod"
+  },
+  "dependencies": {
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.1.2",
+    "vite": "^8.3.5"
+  },
+  "keywords": ["react", "vite", "vercel", "gemini-api", "hacktoberfest"],
+  "author": "",
+  "license": "ISC"
+}
+
