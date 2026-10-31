@@ -69,8 +69,11 @@ test("React build, Express serving, Vite proxy, and Vercel configuration", async
       assert.match(html, /id="root"/);
       assert.match(html, /\/assets\/[^" ]+\.js/);
       assert.doesNotMatch(html, /\/src\/main\.jsx|\/app\.js/);
-      assert.deepEqual((await readdir(path.join(root, "public"))).sort(), ["favicon.svg"]);
-      assert.deepEqual((await readdir(path.join(root, "dist"))).sort(), ["assets", "favicon.svg", "index.html"]);
+      const publicFiles = ["apple-touch-icon.png", "favicon.svg", "og-image.png", "robots.txt", "sitemap.xml"];
+      assert.deepEqual((await readdir(path.join(root, "public"))).sort(), publicFiles);
+      assert.deepEqual((await readdir(path.join(root, "dist"))).sort(), ["assets", "index.html", ...publicFiles].sort());
+      assert.match(html, /name="twitter:card" content="summary_large_image"/);
+      assert.match(html, /property="og:image" content="https:\/\/secondstep\.vercel\.app\/og-image\.png"/);
       const assets = await readdir(path.join(root, "dist", "assets"));
       const script = await readFile(path.join(root, "dist", "assets", assets.find((name) => name.endsWith(".js"))), "utf8");
       assert.doesNotMatch(script, /GEMINI_API_KEY|generativelanguage\.googleapis\.com|AIza[\w-]{30,}/);
